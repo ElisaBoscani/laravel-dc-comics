@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DcComics;
 use Illuminate\Http\Request;
 
 class DcComicsController extends Controller
@@ -11,7 +12,6 @@ class DcComicsController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
