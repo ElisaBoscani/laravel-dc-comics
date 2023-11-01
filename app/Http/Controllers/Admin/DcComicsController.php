@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\DcComics;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DcComicsController extends Controller
 {
@@ -12,6 +14,7 @@ class DcComicsController extends Controller
      */
     public function index()
     {
+        return view('admin.index', ['comics' => DcComics::all()]);
     }
 
     /**
@@ -19,7 +22,7 @@ class DcComicsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
@@ -27,7 +30,18 @@ class DcComicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $file_path = null;
+        if ($request->has('thumb')) {
+            $file_path =  Storage::put('comic_images', $request->thumb);
+        }
+
+        $comics = new DcComics();
+        $comics->title = $request->title;
+        $comics->thumb = $file_path;
+        $comics->save();
+
+        return to_route('admin.index');
     }
 
     /**
