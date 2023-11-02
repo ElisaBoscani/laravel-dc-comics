@@ -5,7 +5,7 @@
 @section('content')
 
 <h1>Lista fumetti</h1>
-<a class="btn btn-info" href="{{route('admin.create')}}">Aggiungi</a>
+<a class="btn btn-info" href="{{route('comics.create')}}">Aggiungi</a>
 
 <div class="container">
 

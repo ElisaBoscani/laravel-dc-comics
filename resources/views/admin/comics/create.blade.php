@@ -4,7 +4,7 @@
 @section('content')
 <h1>Aggiungi Fumetti</h1>
 <div class="container">
-  <form action="{{route('admin.store')}}" method="POST" enctype="multipart/form-data">
+  <form action="{{route('comics.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div>
       <label for="title" class="form-label">Title</label>

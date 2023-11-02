@@ -14,7 +14,7 @@ class DcComicsController extends Controller
      */
     public function index()
     {
-        return view('admin.index', ['comics' => DcComics::all()]);
+        return view('admin.comics.index', ['comics' => DcComics::all()]);
     }
 
     /**
@@ -22,7 +22,7 @@ class DcComicsController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        return view('admin.comics.create');
     }
 
     /**
@@ -41,7 +41,7 @@ class DcComicsController extends Controller
         $comics->thumb = $file_path;
         $comics->save();
 
-        return to_route('admin.index');
+        return to_route('comics.index');
     }
 
     /**
