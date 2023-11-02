@@ -5,7 +5,7 @@
 @section('content')
 
 <h1>Fumetti Home</h1>
-<a href="{{route('admin.comics.index')}}">Pagina per Amministratori</a>
+<a href="{{route('comics.index')}}">Pagina per Amministratori</a>
 @foreach($comics as $comic)
 <p>{{$comic->title}}</p>
 @endforeach

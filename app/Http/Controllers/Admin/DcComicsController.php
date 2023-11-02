@@ -41,32 +41,47 @@ class DcComicsController extends Controller
         $comics->thumb = $file_path;
         $comics->save();
 
-        return to_route('comics.index');
+        return to_route('admin.comics.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(DcComics $comic)
     {
-        //
+        return view('admin.comics.show', compact('comic'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(DcComics $comic)
     {
-        //
+        return view('admin.comics.edit', compact('comic'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, DcComics $comic)
     {
-        //
+
+
+        $data = $request->all();
+
+        if ($request->hasFile('thumb')) {
+
+            Storage::delete($comic->thumb);
+            $path = Storage::put('comic_images', $request->file('thumb'));
+            $data['thumb'] = $path;
+        }
+
+        $comic->update($data);
+        return to_route('comics.index', $comic);
     }
+
+
 
     /**
      * Remove the specified resource from storage.

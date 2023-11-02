@@ -89,7 +89,16 @@
             </div>
           </div>
         </td>
-
+        <td>
+          {{$comic->created_at}}
+        </td>
+        <td>
+          {{$comic->updated_at}}
+        </td>
+        <td>
+          <a href="{{route('comics.show', $comic->id)}}">View</a>
+          <a href="{{route('comics.edit', $comic->id)}}">Edit</a>
+        </td>
       </tr>
       @endforeach
     </tbody>
