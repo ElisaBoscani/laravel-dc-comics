@@ -16,6 +16,11 @@
 </head>
 
 <body>
+  <header class=" bg-primary ">
+    <nav class="navbar p-4 ">
+      <a href="{{route('comics.index')}}" class="text-decoration-none text-white text-uppercase fw-bold">Pagina per Amministratori</a>
+    </nav>
+  </header>
 
   <main>
     @yield('content')
