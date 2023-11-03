@@ -30,18 +30,19 @@ class DcComicsController extends Controller
      */
     public function store(Request $request)
     {
-
-        $file_path = null;
+        $data = $request->all();
+        /* $file_path = null; */
         if ($request->has('thumb')) {
             $file_path =  Storage::put('comic_images', $request->thumb);
+            $data['thumb'] = $file_path;
         }
 
-        $comics = new DcComics();
+        /*   $comics = new DcComics();
         $comics->title = $request->title;
         $comics->thumb = $file_path;
-        $comics->save();
-
-        return to_route('comics.index');
+        $comics->save(); */
+        $comics = DcComics::create($data);
+        return to_route('comics.index')->with('message', 'The data addition  was successful');
     }
 
     /**
@@ -78,7 +79,7 @@ class DcComicsController extends Controller
         }
 
         $comic->update($data);
-        return to_route('comics.index', $comic);
+        return to_route('comics.index', $comic)->with('message', 'The change was successful');
     }
 
 
@@ -92,6 +93,6 @@ class DcComicsController extends Controller
             Storage::delete($comic->comic_images);
         }
         $comic->delete();
-        return to_route('comics.index');
+        return to_route('comics.index')->with('message', 'The deletion was successful');
     }
 }

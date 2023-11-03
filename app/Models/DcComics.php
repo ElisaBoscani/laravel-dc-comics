@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class DcComics extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'thumb'];
+    protected $fillable = ['title', 'thumb', 'price', 'series', 'sale_date', 'type', 'artists', 'writers'];
 }
