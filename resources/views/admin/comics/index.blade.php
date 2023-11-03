@@ -4,8 +4,8 @@
 
 @section('content')
 
-<h1>Lista fumetti</h1>
-<a class="btn btn-info" href="{{route('comics.create')}}">Aggiungi</a>
+<h1>Comics List</h1>
+<a class="btn btn-info" href="{{route('comics.create')}}">Add</a>
 
 <div class="container">
 
@@ -33,7 +33,7 @@
             <div class="accordion-item">
               <h2 class="accordion-header" id="heading{{ $comic->id }}">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$comic->id}}" aria-expanded="false" aria-controls="collapse{{$comic->id}}">
-                  Leggi la Descrizione
+                  Read More
                 </button>
               </h2>
               <div id="collapse{{$comic->id}}" class="accordion-collapse collapse" aria-labelledby="heading{{ $comic->id }}" data-bs-parent="#accordionFlushExample">
@@ -66,7 +66,7 @@
             <div class="accordion-item">
               <h2 class="accordion-header" id="heading{{ $comic->id }}">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$comic->id}}" aria-expanded="false" aria-controls="collapsev{{$comic->id}}">
-                  Leggi gli Artisti
+                  Read More
                 </button>
               </h2>
               <div id="collapse{{$comic->id}}" class="accordion-collapse collapse" aria-labelledby="heading{{ $comic->id }}" data-bs-parent="#accordionFlushExample">
@@ -80,7 +80,7 @@
             <div class="accordion-item">
               <h2 class="accordion-header" id="heading{{ $comic->id }}">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$comic->id}}" aria-expanded="false" aria-controls="collapse{{$comic->id}}">
-                  Leggi gli Scrittori
+                  Read More
                 </button>
               </h2>
               <div id="collapse{{$comic->id}}" class="accordion-collapse collapse" aria-labelledby="heading{{ $comic->id }}" data-bs-parent="#accordionFlushExample">
@@ -96,8 +96,15 @@
           {{$comic->updated_at}}
         </td>
         <td>
-          <a href="{{route('comics.show', $comic->id)}}">View</a>
-          <a href="{{route('comics.edit', $comic->id)}}">Edit</a>
+          <a href="{{route('comics.show', $comic->id)}}" class="btn btn-success">View</a>
+          <a href="{{route('comics.edit', $comic->id)}}" class="btn btn-info">Edit</a>
+
+          <form action="{{route('comics.destroy', $comic->id)}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Confirm</button>
+          </form>
+
         </td>
       </tr>
       @endforeach

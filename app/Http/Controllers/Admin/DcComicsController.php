@@ -41,7 +41,7 @@ class DcComicsController extends Controller
         $comics->thumb = $file_path;
         $comics->save();
 
-        return to_route('admin.comics.index');
+        return to_route('comics.index');
     }
 
     /**
@@ -86,8 +86,12 @@ class DcComicsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(DcComics $comic)
     {
-        //
+        if (!is_null($comic->comic_images)) {
+            Storage::delete($comic->comic_images);
+        }
+        $comic->delete();
+        return to_route('comics.index');
     }
 }
