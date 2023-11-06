@@ -3,19 +3,44 @@
 
 @section('content')
 <h1>Aggiungi Fumetti</h1>
+@if($errors->any())
+<div class="alert alert-danger" role="alert">
+  <ul>
+    @foreach($errors->all() as $error)
+    <li>{{$error}}</li>
+    @endforeach
+  </ul>
+</div>
+@endif
 <div class="container">
   <form action="{{route('comics.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div>
       <label for="title" class="form-label">Title</label>
-      <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId" placeholder="Title ">
+      <input type="text" class="form-control @error('title') is-invalid @enderror" name=" title" id="title" aria-describedby="helpId" placeholder="Title" value="{{old('title')}}">
       <small id="nameHelper" class="form-text text-muted">Type the name here</small>
+      @error('title')
+      <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <i class="fa-solid fa-triangle-exclamation fa-xl" style="color: #ff0f0f;"></i>
+        <span>
+          Name, Error: {{$message}}
+        </span>
+      </div>
+      @enderror
     </div>
     <!-- description -->
     <div>
       <label for="description" class="form-label">Description</label>
-      <input type="text" class="form-control" name="description" id="description" aria-describedby="helpId" placeholder="Description">
+      <input type="text" class="form-control @error('description') is-invalid @enderror" name="description" id="description" aria-describedby="helpId" placeholder="Description" value="{{old('description')}}">
       <small id="nameHelper" class="form-text text-muted">Type the Description here</small>
+      @error('description')
+      <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <i class="fa-solid fa-triangle-exclamation fa-xl" style="color: #ff0f0f;"></i>
+        <span>
+          Name, Error: {{$message}}
+        </span>
+      </div>
+      @enderror
     </div>
     <!-- price -->
     <div>
