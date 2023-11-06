@@ -38,7 +38,7 @@ class DcComicsController extends Controller
             $file_path =  Storage::put('comic_images', $request->thumb);
             $data['thumb'] = $file_path;
         }
-        var_dump($data);
+
         /*   $comics = new DcComics();
         $comics->title = $request->title;
         $comics->thumb = $file_path;
@@ -67,11 +67,11 @@ class DcComicsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DcComics $comic)
+    public function update(StoreComicRequest $request, DcComics $comic)
     {
 
+        $data = $request->validated();
 
-        $data = $request->all();
 
         if ($request->hasFile('thumb')) {
 

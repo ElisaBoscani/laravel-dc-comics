@@ -45,8 +45,16 @@
     <!-- price -->
     <div>
       <label for="price" class="form-label">Price</label>
-      <input type="number" class="form-control" name="price" id="price" aria-describedby="helpId" placeholder="Price es.12.60">
+      <input type="number" class="form-control @error('price') is-invalid @enderror" name="price" id="price" aria-describedby="helpId" placeholder="Price es.12.60" value="{{old('price')}}">
       <small id="nameHelper" class="form-text text-muted">Type the Price here</small>
+      @error('description')
+      <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <i class="fa-solid fa-triangle-exclamation fa-xl" style="color: #ff0f0f;"></i>
+        <span>
+          Name, Error: {{$message}}
+        </span>
+      </div>
+      @enderror
     </div>
     <!-- series -->
     <div>

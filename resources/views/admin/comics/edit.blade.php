@@ -3,6 +3,15 @@
 
 @section('content')
 <h1>Modifica Fumetti</h1>
+@if($errors->any())
+<div class="alert alert-danger" role="alert">
+  <ul>
+    @foreach($errors->all() as $error)
+    <li>{{$error}}</li>
+    @endforeach
+  </ul>
+</div>
+@endif
 <div class="container">
   <form action="{{route('comics.update', $comic)}}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -11,18 +20,42 @@
       <label for="title" class="form-label">Title</label>
       <input type="text" class="form-control" name="title" id="title" value="{{$comic->title}}" aria-describedby="helpId" placeholder="Titolo fumetto">
       <small id="nameHelper" class="form-text text-muted">Type the name here</small>
+      @error('title')
+      <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <i class="fa-solid fa-triangle-exclamation fa-xl" style="color: #ff0f0f;"></i>
+        <span>
+          Name, Error: {{$message}}
+        </span>
+      </div>
+      @enderror
     </div>
     <!-- description -->
     <div>
       <label for="description" class="form-label">Description</label>
       <input type="text" class="form-control" name="description" id="description" value="{{$comic->description}}" aria-describedby="helpId" placeholder="Description">
       <small id="nameHelper" class="form-text text-muted">Type the Description here</small>
+      @error('description')
+      <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <i class="fa-solid fa-triangle-exclamation fa-xl" style="color: #ff0f0f;"></i>
+        <span>
+          Name, Error: {{$message}}
+        </span>
+      </div>
+      @enderror
     </div>
     <!-- price -->
     <div>
       <label for="price" class="form-label">Price</label>
       <input type="number" class="form-control" name="price" id="price" value="{{$comic->price}}" aria-describedby="helpId" placeholder="Price es.12.60">
       <small id="nameHelper" class="form-text text-muted">Type the Description here</small>
+      @error('description')
+      <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <i class="fa-solid fa-triangle-exclamation fa-xl" style="color: #ff0f0f;"></i>
+        <span>
+          Name, Error: {{$message}}
+        </span>
+      </div>
+      @enderror
     </div>
     <!-- serie -->
     <div>
